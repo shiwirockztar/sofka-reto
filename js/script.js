@@ -6,13 +6,14 @@ asignarle un premio que el jugador va a ganar, el premio puede ser puntos o dine
 let categorías=["categoriaA","categoriaB","categoriaC","categoriaD","categoriaE"];
 
 const obtenerPreguntas= (categoría)=>{
-	categorías={
-		categoríaA:[],
-		categoríaB:[],
-		categoríaC:[],
-		categoríaD:[],
-		categoríaE:[],
+	categorías={  //lista de categorias segun su nivel de pregunta
+		categoríaA:["preg1","preg2","preg3","preg4","preg5"],
+		categoríaB:["preg1","preg2","preg3","preg4","preg5"],
+		categoríaC:["preg1","preg2","preg3","preg4","preg5"],
+		categoríaD:["preg1","preg2","preg3","preg4","preg5"],
+		categoríaE:["preg1","preg2","preg3","preg4","preg5"],
 	}
+	if(categorías[categoría]!==undefined){return }
 }
 
 
