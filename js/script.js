@@ -74,9 +74,9 @@ let historial=[];
 
 for (i = 1; i < 6; i++) {  //recorro todos los niveles
   orden = orden.sort(function() {return Math.random() - 0.5});
-  historial.push(orden);
   console.log("nivel ",i);
   orden.forEach(function(a) {respuesta=eligeCategoria(a,i);console.log(respuesta);}); //obtengo las preguntas de todas las categorias segun el orden ya elegido por sistema
+  orden.forEach(function(a) {historial.push(a);});
 } 
 
 // respuesta=eligeCategoria(1,2);console.log(respuesta);
@@ -84,12 +84,12 @@ for (i = 1; i < 6; i++) {  //recorro todos los niveles
 /*3. El Jugador selecciona una opción de las 4 opciones que tiene, si pierde se finaliza el
 juego si gana continua a la siguiente ronda.*/
 
-// dinamic(challenger[chall].name,chall); 
 
-function dinamic(playerN,N) {
+
+function dinamic(playerN) {
 
     let div =document.createElement("div");
-    div.setAttribute("class","player");
+    div.setAttribute("class","Question");
     let h3=document.createElement("h3");
     h3.innerHTML=playerN;
     div.appendChild(h3);
@@ -99,6 +99,33 @@ function dinamic(playerN,N) {
 }
 
 console.log(historial);
+
+// historial.forEach(function(a){respuesta=eligeCategoria(a,1);console.log(a);});
+
+
+// for (i = 1,y=0; i < 999; i++){
+// for (h in historial) {
+
+	// respuesta=eligeCategoria(historial[h],1);console.log(respuesta.pregunta);
+	// dinamic(respuesta.pregunta);
+	// let name= prompt(`Por favor introduzca su eleccion`);
+	// if (name==y) {
+	// 	respuesta=eligeCategoria(historial[h],1);console.log(respuesta.pregunta);
+	// 	dinamic(respuesta.pregunta);
+		// i=1000;}
+let n=-1;
+let juego =(k)=>{k++;respuesta=eligeCategoria(historial[k],1);
+				 console.log(respuesta.pregunta);
+				 dinamic(respuesta.pregunta);
+				 setTimeout(function(){
+    			let name= prompt(`Por favor introduzca su eleccion`);;
+				},5000);
+				 if (name=="y") {juego(k);}
+				 else{alert("buen juego"); }
+}
+
+let ani=juego(n);
+
 /*4. La siguiente ronda selecciona una pregunta de un grado de complejidad mayor según
 la categoría. Hace el mismo comportamiento del ítem 4.*/
 
