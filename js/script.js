@@ -64,7 +64,7 @@ const eligeCategoria=(n,nivel)=>{
 	if (n==5) {rta=obtenerPreguntas("categoríaE");}
 	nivel--; //el nivel esta -1 por indice de arreglo
 	// mostrarPregunta(rta[nivel]);
-	return rta[nivel];
+	return rta[nivel]; //regresa la pregunta
 }
 
 /* --------------- aqui doy el orden de las categorías por nivel --------------- */
@@ -75,7 +75,7 @@ let historial=[];
 for (i = 1; i < 6; i++) {  //recorro todos los niveles
   orden = orden.sort(function() {return Math.random() - 0.5});
   console.log("nivel ",i);
-  orden.forEach(function(a) {respuesta=eligeCategoria(a,i);console.log(respuesta);}); //obtengo las preguntas de todas las categorias segun el orden ya elegido por sistema
+  // orden.forEach(function(a) {respuesta=eligeCategoria(a,i);console.log(respuesta);}); //obtengo las preguntas de todas las categorias segun el orden ya elegido por sistema
   orden.forEach(function(a) {historial.push(a);});
 } 
 
@@ -84,103 +84,85 @@ for (i = 1; i < 6; i++) {  //recorro todos los niveles
 /*3. El Jugador selecciona una opción de las 4 opciones que tiene, si pierde se finaliza el
 juego si gana continua a la siguiente ronda.*/
 
-
+let contQ=1;
 
 function dinamic(objeto,n) {
-		// document.getElementById("container").outerHTML = "";
-		// var element = document.getElementById(botones);
-		// element.parentNode.removeChild(botones);
-		// let but=document.createElement("BUTTON");
-		let boton=document.querySelector("#botones") 
+
+		let boton=document.createElement("div");
+		boton.setAttribute("class","boton");
+
 		let opA=document.createElement("a");
 		opA.innerHTML=objeto.respuestas.A;
-		opA.setAttribute('onclick', "correcto("+objeto.opciones.A+")"); 
+		opA.setAttribute('onclick', "decision("+objeto.opciones.A+")"); 
 		boton.appendChild(opA);
 
 
-				let opB=document.createElement("a");
+		let opB=document.createElement("a");
 		opB.innerHTML=objeto.respuestas.B;
-		opB.setAttribute('onclick', "correcto("+objeto.opciones.B+")"); 
+		opB.setAttribute('onclick', "decision("+objeto.opciones.B+")"); 
 		boton.appendChild(opB);
 
-				let opC=document.createElement("a");
+		let opC=document.createElement("a");
 		opC.innerHTML=objeto.respuestas.C;
-		opC.setAttribute('onclick', "correcto("+objeto.opciones.C+")"); 
+		opC.setAttribute('onclick', "decision("+objeto.opciones.C+")"); 
 		boton.appendChild(opC);
 
 
-				let opD=document.createElement("a");
+		let opD=document.createElement("a");
 		opD.innerHTML=objeto.respuestas.D;
-		opD.setAttribute('onclick', "correcto("+objeto.opciones.D+")"); 
+		opD.setAttribute('onclick', "decision("+objeto.opciones.D+")"); 
 		boton.appendChild(opD);
 
 
-    let div =document.createElement("div");
-    div.setAttribute("class","Question");
+
+    let pregunta =document.createElement("div");
+    pregunta.setAttribute("class","pregunta");
+
     let h3=document.createElement("h3");
     h3.innerHTML=objeto.pregunta;
-    div.appendChild(h3);
-
-    let title=document.querySelector("#container");     //forma directa de pasar elementos
-    title.appendChild(div);
-    title.appendChild(boton);
+    pregunta.appendChild(h3);
 
 
-    // parte.setAttribute("id",`amplio${n}`);
-    // document.getElementById("botones").style.display = "none";
+    let question =document.createElement("div");
+    question.setAttribute("id",`Question${contQ++}`);
+    question.appendChild(pregunta);
+    question.appendChild(boton);
+
 
     let contenido=document.querySelector("#contenido")     //forma directa de pasar elementos
-    contenido.appendChild(title);
+    contenido.appendChild(question);
+    contQ=contQ+1;console.log("aqui el contQ es ",contQ);
 }
-function correcto(valor) {if (valor==true) {console.log("es real");location.reload();} else{console.log("es falso");} }
+
+function decision(valor) {if (valor==true) {console.log("es real");document.getElementById("Question1").style.display = "none";Z++;proceso(Z);
+} else{console.log("es falso");} }
 
 console.log(historial);
-
+// location.reload();                 //https://www.youtube.com/watch?v=KJbLiV6Y9sY&ab_channel=BastianAndresWeb
 // historial.forEach(function(a){respuesta=eligeCategoria(a,1);console.log(a);});
 
 
-// for (i = 1,y=0; i < 999; i++){
-// for (h in historial) {
+//---------------------------- start----------------------------
 
-	// respuesta=eligeCategoria(historial[h],1);console.log(respuesta.pregunta);
-	// dinamic(respuesta.pregunta);
-	// let name= prompt(`Por favor introduzca su eleccion`);
-	// if (name==y) {
-	// 	respuesta=eligeCategoria(historial[h],1);console.log(respuesta.pregunta);
-	// 	dinamic(respuesta.pregunta);
-		// i=1000;}
-let n=-1;
-// let juego =(k)=>{k++;respuesta=eligeCategoria(historial[k],1);
-// 				 console.log(respuesta.pregunta);
-// 				 dinamic(respuesta.pregunta);
-// 				 if (name=="y") {juego(k);}
-// 				 else{alert("buen juego"); }
-// }
-
-// let ani=juego(n);
-let incremento=0;
-
-respuesta=eligeCategoria(historial[incremento],1);
-console.log(respuesta.pregunta);
-dinamic(respuesta,1);
+let datos=(k)=>{
+	let a=historial[k];
+	let n=1;
+	if (k>4 && k<=9) {n=2;}
+	if (k>9 && k<=14) {n=3;}
+	if (k>14 && k<=19) {n=4;}
+	if (k>19) {n=5;}
+	let b=n;
+	return [a,b]; //regresa datos de la categoria elegida y el nivel
+}
 
 
+let proceso=(x)=>{
+	let data=datos(x);
+	dinamic(eligeCategoria(data[0],data[1]));
+}
 
-// function recursiva(k) {
-// 	let n=1
-// 	if (k>4 && k<9) {n=2;}
-// 	if (k>9 && k<14) {n=3;}
-// 	if (k>14 && k<19) {n=4;}
-// 	if (k>19) {n=5;}
-
-//   // respuesta=eligeCategoria(k,n);
-//   respuesta=eligeCategoria(historial[incremento],n);
-// 	console.log(respuesta.pregunta);
-//   document.getElementById(`amplio${incremento}`).style.display = "none";
-
-// 	dinamic(respuesta,incremento);
-
-// } 
+let Z=0;
+proceso(Z);
 
 
 
