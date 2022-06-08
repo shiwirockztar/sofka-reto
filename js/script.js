@@ -86,17 +86,53 @@ juego si gana continua a la siguiente ronda.*/
 
 
 
-function dinamic(playerN) {
+function dinamic(objeto,n) {
+		// document.getElementById("container").outerHTML = "";
+		// var element = document.getElementById(botones);
+		// element.parentNode.removeChild(botones);
+		// let but=document.createElement("BUTTON");
+		let boton=document.querySelector("#botones") 
+		let opA=document.createElement("a");
+		opA.innerHTML=objeto.respuestas.A;
+		opA.setAttribute('onclick', "correcto("+objeto.opciones.A+")"); 
+		boton.appendChild(opA);
+
+
+				let opB=document.createElement("a");
+		opB.innerHTML=objeto.respuestas.B;
+		opB.setAttribute('onclick', "correcto("+objeto.opciones.B+")"); 
+		boton.appendChild(opB);
+
+				let opC=document.createElement("a");
+		opC.innerHTML=objeto.respuestas.C;
+		opC.setAttribute('onclick', "correcto("+objeto.opciones.C+")"); 
+		boton.appendChild(opC);
+
+
+				let opD=document.createElement("a");
+		opD.innerHTML=objeto.respuestas.D;
+		opD.setAttribute('onclick', "correcto("+objeto.opciones.D+")"); 
+		boton.appendChild(opD);
+
 
     let div =document.createElement("div");
     div.setAttribute("class","Question");
     let h3=document.createElement("h3");
-    h3.innerHTML=playerN;
+    h3.innerHTML=objeto.pregunta;
     div.appendChild(h3);
 
-    let title=document.querySelector("#container")     //forma directa de pasar elementos
+    let title=document.querySelector("#container");     //forma directa de pasar elementos
     title.appendChild(div);
+    title.appendChild(boton);
+
+
+    // parte.setAttribute("id",`amplio${n}`);
+    // document.getElementById("botones").style.display = "none";
+
+    let contenido=document.querySelector("#contenido")     //forma directa de pasar elementos
+    contenido.appendChild(title);
 }
+function correcto(valor) {if (valor==true) {console.log("es real");location.reload();} else{console.log("es falso");} }
 
 console.log(historial);
 
@@ -114,20 +150,49 @@ console.log(historial);
 	// 	dinamic(respuesta.pregunta);
 		// i=1000;}
 let n=-1;
-let juego =(k)=>{k++;respuesta=eligeCategoria(historial[k],1);
-				 console.log(respuesta.pregunta);
-				 dinamic(respuesta.pregunta);
-				 setTimeout(function(){
-    			let name= prompt(`Por favor introduzca su eleccion`);;
-				},5000);
-				 if (name=="y") {juego(k);}
-				 else{alert("buen juego"); }
-}
+// let juego =(k)=>{k++;respuesta=eligeCategoria(historial[k],1);
+// 				 console.log(respuesta.pregunta);
+// 				 dinamic(respuesta.pregunta);
+// 				 if (name=="y") {juego(k);}
+// 				 else{alert("buen juego"); }
+// }
 
-let ani=juego(n);
+// let ani=juego(n);
+let incremento=0;
+
+respuesta=eligeCategoria(historial[incremento],1);
+console.log(respuesta.pregunta);
+dinamic(respuesta,1);
+
+
+
+// function recursiva(k) {
+// 	let n=1
+// 	if (k>4 && k<9) {n=2;}
+// 	if (k>9 && k<14) {n=3;}
+// 	if (k>14 && k<19) {n=4;}
+// 	if (k>19) {n=5;}
+
+//   // respuesta=eligeCategoria(k,n);
+//   respuesta=eligeCategoria(historial[incremento],n);
+// 	console.log(respuesta.pregunta);
+//   document.getElementById(`amplio${incremento}`).style.display = "none";
+
+// 	dinamic(respuesta,incremento);
+
+// } 
+
+
+
 
 /*4. La siguiente ronda selecciona una pregunta de un grado de complejidad mayor según
 la categoría. Hace el mismo comportamiento del ítem 4.*/
 
 /*5. Si llega a la ronda 5 y pasa, entonces gana el juego, el premio mayor debería estar en
 la última ronda.*/
+
+
+
+				//  setTimeout(function(){
+    // 			let name= prompt(`Por favor introduzca su eleccion`);;
+				// },5000);
