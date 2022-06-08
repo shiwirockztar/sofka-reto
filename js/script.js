@@ -79,12 +79,9 @@ for (i = 1; i < 6; i++) {  //recorro todos los niveles
   orden.forEach(function(a) {historial.push(a);});
 } 
 
-// respuesta=eligeCategoria(1,2);console.log(respuesta);
 
 /*3. El Jugador selecciona una opción de las 4 opciones que tiene, si pierde se finaliza el
 juego si gana continua a la siguiente ronda.*/
-
-let contQ=1;
 
 function dinamic(objeto,n) {
 
@@ -124,7 +121,7 @@ function dinamic(objeto,n) {
 
 
     let question =document.createElement("div");
-    question.setAttribute("id",`Question${contQ++}`);
+    question.setAttribute("id",`Question${n}`);
     question.appendChild(pregunta);
     question.appendChild(boton);
 
@@ -134,11 +131,12 @@ function dinamic(objeto,n) {
     contQ=contQ+1;console.log("aqui el contQ es ",contQ);
 }
 
-function decision(valor) {if (valor==true) {console.log("es real");document.getElementById("Question1").style.display = "none";Z++;proceso(Z);
-} else{console.log("es falso");} }
+function decision(valor) {if (valor==true) {	alert("Felicidades Respuesta correcta!");console.log(Z);document.getElementById(`Question${Z}`).style.display = "none";
+	Z++;proceso(Z);
+} else{alert("Lo siento respuesta incorrecta\n Perdiste !"); location.reload() ;} }
 
 console.log(historial);
-// location.reload();                 //https://www.youtube.com/watch?v=KJbLiV6Y9sY&ab_channel=BastianAndresWeb
+                //https://www.youtube.com/watch?v=KJbLiV6Y9sY&ab_channel=BastianAndresWeb
 // historial.forEach(function(a){respuesta=eligeCategoria(a,1);console.log(a);});
 
 
@@ -158,7 +156,7 @@ let datos=(k)=>{
 
 let proceso=(x)=>{
 	let data=datos(x);
-	dinamic(eligeCategoria(data[0],data[1]));
+	dinamic(eligeCategoria(data[0],data[1]),x);
 }
 
 let Z=0;
