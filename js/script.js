@@ -14,7 +14,7 @@ let preg1A={pregunta:"Según el refran, quien es ciego?",opciones:{A: false,B: t
 	preg4B={pregunta:"¿Qué enfermedad tenía el legendario astrofísico Stephen Hawking?",opciones:{A: false,B: false,C: true,D: false},respuestas:{A: "Enfermedad de Addison", B: "Progeria de Hutchinson-Gilford", C: "Esclerosis Lateral Amiotrófica", D: "Síndrome de Marfan" }},
 	preg5B={pregunta:"La vara que suele llevar como cetro el Dios de la mitología romana Baco se llama:",opciones:{A: false,B: true,C: false,D: false},respuestas:{A: "Tirso", B: "Talión", C: "Vareta", D: "Mástil" }},
 
-  preg1C={pregunta:"¿Cuál es el océano más grande del mundo?",opciones:{A: false,B: false,C: true,D: false},respuestas:{A: "Océano Pacífico", B: "Océano Índico", C: "Océano Antártico", D: "Océano Atlántico" }},
+  preg1C={pregunta:"¿Cuál es el océano más grande del mundo?",opciones:{A: true,B: false,C: false,D: false},respuestas:{A: "Océano Pacífico", B: "Océano Índico", C: "Océano Antártico", D: "Océano Atlántico" }},
 	preg2C={pregunta:"Cual de los siguientes países limita con Francia?",opciones:{A: false,B: false,C: false,D: true},respuestas:{A: "Holanda", B: "Suecia", C: "Dinamarca", D: "Belgica" }},
 	preg3C={pregunta:"Cual es el idioma oficial de Israel?",opciones:{A: false,B: false,C: true,D: false},respuestas:{A: "Japones", B: "Griego", C: "Hebreo", D: "Chino" }},
 	preg4C={pregunta:"Jose Tomas Boves murio en la Batalla de:",opciones:{A: false,B: true,C: false,D: false},respuestas:{A: "Carabobo", B: "Urica", C: "Mucuritas", D: "Calabozo" }},
@@ -26,11 +26,11 @@ let preg1A={pregunta:"Según el refran, quien es ciego?",opciones:{A: false,B: t
 	preg4D={pregunta:"Son las membranas movibles cubiertas de piel que resguardan los ojos:",opciones:{A: false,B: false,C: true,D: false},respuestas:{A: "Cejas", B: "Pupilas", C: "Parpados", D: "Anteojos" }},
 	preg5D={pregunta:"¿Qué parte del cuerpo produce insulina?",opciones:{A: false,B: true,C: false,D: false},respuestas:{A: "El páncreas", B: "El bazo", C: "El hígado", D: "El timo" }},
 
-  preg1E={pregunta:"esta es la pregunta 1 E?",opciones:{A: true,B: false,C: false,D: false},respuestas:{A: "opcion A", B: "opcion B", C: "opcion C", D: "opcion D" }},
-	preg2E={pregunta:"esta es la pregunta 2 E?",opciones:{A: true,B: false,C: false,D: false},respuestas:{A: "opcion A", B: "opcion B", C: "opcion C", D: "opcion D" }},
-	preg3E={pregunta:"esta es la pregunta 3 E?",opciones:{A: true,B: false,C: false,D: false},respuestas:{A: "opcion A", B: "opcion B", C: "opcion C", D: "opcion D" }},
-	preg4E={pregunta:"esta es la pregunta 4 E?",opciones:{A: true,B: false,C: false,D: false},respuestas:{A: "opcion A", B: "opcion B", C: "opcion C", D: "opcion D" }},
-	preg5E={pregunta:"esta es la pregunta 5 E?",opciones:{A: true,B: false,C: false,D: false},respuestas:{A: "opcion A", B: "opcion B", C: "opcion C", D: "opcion D" }};
+  preg1E={pregunta:"El timbal es un instrumento de",opciones:{A: true,B: false,C: false,D: false},respuestas:{A: "Percusion", B: "Viento metal", C: "Viento madera", D: "Cuerda" }},
+	preg2E={pregunta:"Tecnica que describe y representa detalladamente la superficie de un terreno:",opciones:{A: true,B: false,C: false,D: false},respuestas:{A: "Topografía", B: "Serigrafía", C: "Epigrafía", D: "Holografía" }},
+	preg3E={pregunta:"¿Aproximadamente, qué porcentaje de la superficie de la Tierra es agua?",opciones:{A: true,B: false,C: false,D: false},respuestas:{A: "70%", B: "50%", C: "45%", D: "80%" }},
+	preg4E={pregunta:`A que tipo de animales se refiere la palabra "aviario"?`,opciones:{A: false,B: true,C: false,D: false},respuestas:{A: "Peces", B: "Aves", C: "Mamíferos", D: "Moluscos" }},
+	preg5E={pregunta:"Cual de estos instrumentos mide la densidad de los aceites?",opciones:{A: false,B: false,C: true,D: false},respuestas:{A: "Dinamometro", B: "Micrometro", C: "oOleometro", D: "Holometro" }};
 
 
 const obtenerPreguntas= (categoría)=>{
@@ -114,9 +114,9 @@ function dinamic(objeto,n) {
     let pregunta =document.createElement("div");
     pregunta.setAttribute("class","pregunta");
 
-    let h3=document.createElement("h3");
-    h3.innerHTML=objeto.pregunta;
-    pregunta.appendChild(h3);
+    let h2=document.createElement("h2");
+    h2.innerHTML=objeto.pregunta;
+    pregunta.appendChild(h2);
 
 
     let question =document.createElement("div");
@@ -206,7 +206,7 @@ function decision(valor) {
 	if (valor==true) {	alert("Felicidades Respuesta correcta!");
 	document.getElementById(`Question${Z}`).style.display = "none";	document.getElementById(`${Z}`).style.display = "none";	
 	Z++;proceso(Z);
-	} else{alert("Lo siento respuesta incorrecta\n Perdiste !");save=grabacionObj(); File=savePuntos(save);console.log(File); 
+	} else{alert("Lo siento respuesta incorrecta\n Perdiste !");
 		setTimeout(function(){location.reload() ;},3000);} 
 	}
 
@@ -230,3 +230,9 @@ function obtPuntos() {
 }
 
 obtPuntos();
+
+function retiro(){
+	save=grabacionObj(); File=savePuntos(save);console.log(File); 
+	alert("Decisdiste retirarte !");
+	setTimeout(function(){location.reload() ;},3000);
+}

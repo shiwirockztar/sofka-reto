@@ -1,6 +1,12 @@
 body{padding: 0px;margin: 0; background : skyblue ; font-family: 'Krona One', sans-serif;}
 
-#contenido{max-width: 1280px; height: 100%;width: 90%;margin: auto;}
+#menu{max-width: 1280px; height: 100%;width: 90%;margin: auto;}
 
-.boton a{color: white;background: black;padding: 9px 19px;padding: 12px 36px;}
+.boton a{color: white;background: black;padding: 9px 19px;padding: 12px 36px;margin: 7px;}
 .boton a:hover{color: #ff0000;background: black;padding: 9px 19px;padding: 18px 36px;}
+
+#retiro a{color: #ff0000;background: orange;padding: 9px 19px;padding: 18px 36px;}
+
+h3{color: white;}
+
+.boton{display: flex;  flex-wrap: wrap;}
