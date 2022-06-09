@@ -180,7 +180,7 @@ la última ronda.*/
 function grabacionObj() {
     let name=nombre;
     let point=points;
-    return {"name":name, "puntaje":point}
+    return {"name":name, "puntaje":point} //los datos que vamos a guardar son el nombre y el puntaje
 }
 
 // ****** obj *******
@@ -189,11 +189,11 @@ let save;
 // -----archivo como Json---
 function savePuntos(save) {
     //creamos arreglo para guardar varios puntajes
-    let oldSaveObj=JSON.parse(localStorage.getItem("save"))||[];
-    oldSaveObj.push(save);
+    let oldSaveObj=JSON.parse(localStorage.getItem("save"))||[];//convertimos de Json a objeto en caso de no tener datos solo se pasara un array vacio
+    oldSaveObj.push(save); //agregamos otro objeto
     //se hace string
-    let saveJson=JSON.stringify(oldSaveObj);
-    localStorage.setItem("save",saveJson);
+    let saveJson=JSON.stringify(oldSaveObj); //convertimos de nuevo a Json
+    localStorage.setItem("save",saveJson); //guardamos Json en local storage
     return saveJson;
 }
 
@@ -207,9 +207,26 @@ function decision(valor) {
 	document.getElementById(`Question${Z}`).style.display = "none";	document.getElementById(`${Z}`).style.display = "none";	
 	Z++;proceso(Z);
 	} else{alert("Lo siento respuesta incorrecta\n Perdiste !");save=grabacionObj(); File=savePuntos(save);console.log(File); 
-		setTimeout(function(){location.reload() ;},5000);} 
+		setTimeout(function(){location.reload() ;},3000);} 
 	}
 
 
 
-			
+// ********************* proceso de mostrar los records *****************
+// -----archivo como Json---
+
+function obtPuntos() {
+    //creamos arreglo para guardar varios puntajes
+    let data=JSON.parse(localStorage.getItem("save"))||[];
+    //se hace string
+    console.log("estos son los datos obtenidos ",data);
+
+		for (var i = 0; i < data.length; i++) {
+    let h4=document.createElement("h4");
+					h4.innerHTML=`el usuario : ${data[i].name} con ${data[i].puntaje} puntos`;
+					let puntos=document.querySelector("#guardados")     //forma directa de pasar elementos
+					puntos.appendChild(h4);
+		}
+}
+
+obtPuntos();
