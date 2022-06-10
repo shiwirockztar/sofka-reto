@@ -16,6 +16,22 @@ _el navegador creara un archivo Json que se guardara en el localStorage empleand
 _**En caso de desear borrar la lista de puntajes, se debera accerder al localStorage del programa en el navegador y borrarlo.**_ 
 
 _Mediante este proyecto deseo demostrar algunas de mis capacidades en el mundo de la programacion mediante lenguajes de programacion como HTML CSS y JAVSCRIPT._
+_Hubo un pequeño error al hacer el ultimo push, y debido a no querer hacerle mas modificaciones al codigo lo deje tal como se ve en la version 1.0
+y falto añadir el guardado de los datos en el caso "Fin del juego forzado" que se da cuando el sistema finaliza el juego porque no selecciono una pregunta
+correcta, pero esto se soluciona solo agregando una pequeña linea de codigo en el archivo javascript en la linea 194._
+
+_cambiando esto._
+```		 
+  else{
+  alert("Lo siento respuesta incorrecta\n Perdiste !");
+  setTimeout(function(){location.reload() ;},3000);} 
+```
+_a esto._
+```		 
+  else{save=grabacionObj(); File=savePuntos(save);console.log(File);
+  alert("Lo siento respuesta incorrecta\n Perdiste !");
+  setTimeout(function(){location.reload() ;},3000);} 
+```
 
 
 ## Realizado por:
